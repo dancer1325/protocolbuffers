@@ -180,5 +180,5 @@ web at:
 
 ## Kotlin Protocol Buffers
 
-Code to support more idiomatic Kotlin protocol buffers has been added to the
-repository, and Kotlin support will be launched in the next numbered release.
+* idiomatic Kotlin protocol buffers | current Protocolbuffers repository
+* Kotlin support -- will be launched in -- next numbered release
