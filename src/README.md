@@ -8,79 +8,60 @@ https://developers.google.com/protocol-buffers/
 CMake Installation
 -----------------------
 
-To compile or install protobuf from source using CMake, see
-[cmake/README.md](../cmake/README.md).
+* check [cmake/README.md](../cmake/README.md)
 
 C++ Protobuf - Unix
 -----------------------
 
-To build protobuf from source, the following tools are needed:
-
-  * bazel
-  * git
-  * g++
-  * Abseil
-
-On Ubuntu/Debian, for example, you can install them with:
-
-    sudo apt-get install g++ git bazel
-
-On other platforms, please use the corresponding package managing tool to
-install them before proceeding.  See https://bazel.build/install for further
-instructions on installing Bazel, or to build from source using CMake, see
-[cmake/README.md](../cmake/README.md). See https://github.com/abseil/abseil-cpp
-for instructions on installing Abseil.
-
-To get the source, download the release .tar.gz or .zip package in the
-release page:
-
-    https://github.com/protocolbuffers/protobuf/releases/latest
-
-You can also get the source by "git clone" our git repository. Make sure you
-have also cloned the submodules and generated the configure script (skip this
-if you are using a release .tar.gz or .zip package):
-
-    git clone https://github.com/protocolbuffers/protobuf.git
-    cd protobuf
-    git submodule update --init --recursive
-
-To build the C++ Protocol Buffer runtime and the Protocol Buffer compiler
-(protoc) execute the following:
-
-    bazel build :protoc :protobuf
-
-The compiler can then be installed, for example on Linux:
-
-    cp bazel-bin/protoc /usr/local/bin
-
-For more usage information on Bazel, please refer to http://bazel.build.
+* goal
+  * build protobuf -- from -- source
+* steps
+  * install the following tools: bazel, git, g++, Abseil
+    * `sudo apt-get install g++ git bazel`  | Ubuntu
+    * check
+      * https://bazel.build/install
+      * [cmake/README.md](../cmake/README.md)
+        * build from source -- via -- CMake
+      * https://github.com/abseil/abseil-cpp
+  * get the source code
+    * download the release .tar.gz or .zip package in https://github.com/protocolbuffers/protobuf/releases/latest
+    * get it from https://github.com/protocolbuffers/protobuf.git 
+      ```
+      git clone https://github.com/protocolbuffers/protobuf.git
+      cd protobuf
+      git submodule update --init --recursive  // check if the submodules have been ALSO cloned
+      ```
+  * `bazel build :protoc :protobuf`
+    * build the 
+      * C++ Protocol Buffer runtime &
+      * Protocol Buffer compiler -- `protoc`
+  * copy the generated `protoc` -- to -- /usr/local/bin 
+    * _Example:_ on Linux
+      ```
+      cp bazel-bin/protoc /usr/local/bin    
+      ```
+  * `protoc --version`
+    * check it's installed
 
 **Compiling dependent packages**
 
-To compile a package that uses Protocol Buffers, you need to setup a Bazel
-WORKSPACE that's hooked up to the protobuf repository and loads its
-dependencies.  For an example, see [WORKSPACE](../examples/WORKSPACE).
+* if you want to compile a package / uses Protocol Buffers -> set up a Bazel WORKSPACE /
+  * -- hooked up to the -- protobuf repository
+  * loads its dependencies
+* _Example:_ [WORKSPACE](../examples/WORKSPACE)
 
 **Note for Mac users**
 
-For a Mac system, Unix tools are not available by default. You will first need
-to install Xcode from the Mac AppStore and then run the following command from
-a terminal:
-
-    sudo xcode-select --install
-
-To install Unix tools, you can install "port" following the instructions at
-https://www.macports.org . This will reside in /opt/local/bin/port for most
-Mac installations.
-
-    sudo /opt/local/bin/port install bazel
-
-Alternative for Homebrew users:
-
-    brew install bazel
-
-Then follow the Unix instructions above.
-
+* Unix tools are NOT available by default | Mac
+* steps
+  * install Xcode -- from the -- Mac AppStore
+  * `sudo xcode-select --install`
+  * install bazel
+    * `sudo /opt/local/bin/port install bazel`
+      * https://www.macports.org
+      * allowed for MOST Mac installations
+    * `brew install bazel`
+  * follow the Unix instructions above
 
 C++ Protobuf - Windows
 --------------------------
@@ -112,21 +93,16 @@ instructions, above.
 Binary Compatibility Warning
 ----------------------------
 
-Due to the nature of C++, it is unlikely that any two versions of the
-Protocol Buffers C++ runtime libraries will have compatible ABIs.
-That is, if you linked an executable against an older version of
-libprotobuf, it is unlikely to work with a newer version without
-re-compiling.  This problem, when it occurs, will normally be detected
-immediately on startup of your app.  Still, you may want to consider
-using static linkage.  You can configure this in your `cc_binary` Bazel rules
-by specifying:
+* unlikely that 2 versions Protocol Buffers C++ runtime libraries / compatible ABIs
+  * Reason: 🧠 due to the nature of C++ 🧠
+  * == if an executable -- is linked against an -- older version of libprotobuf -> unlikely to work with a newer version
+    * -> you need to re-compile
+    * `linkstatic=True` | `cc_binary` Bazel rules
+  * use cases
+    * startup of your app
 
-    linkstatic=True
 
 Usage
 -----
 
-The complete documentation for Protocol Buffers is available via the
-web at:
-
-https://protobuf.dev/
+* Check https://protobuf.dev/
