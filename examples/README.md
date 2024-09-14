@@ -1,45 +1,40 @@
 # Protocol Buffers - Code Example
 
-This directory contains example code that uses Protocol Buffers to manage an
-address book. Two programs are provided for each supported language. The
-add_person example adds a new person to an address book, prompting the user to
-input the person's information. The list_people example lists people already in
-the address book. The examples use the exact same format in all three languages,
-so you can, for example, use add_person_java to create an address book and then
-use list_people_python to read it.
-
-These examples are part of the Protocol Buffers tutorial, located at:
-  https://developers.google.com/protocol-buffers/docs/tutorials
+* example code / uses Protocol Buffers -- to manage an -- address book
+  * 2 programs / supported language
+    * "add_person"
+      * adds a new person | address book / prompt the user -- to -- input the person's information
+    * "list_people"
+      * lists people ALREADY | address book
+      * SAME format | ALL 3 languages
+        * -> _Example:_ you can use "add_person_java" to create an address book & use "list_people_python" to read it
+* check guide | https://developers.google.com/protocol-buffers/docs/tutorials
 
 ## Build the example using bazel
 
-The example requires bazel 0.5.4 or newer to build. You can download/install
-the latest version of bazel from bazel's release page:
-
-    https://github.com/bazelbuild/bazel/releases
-
-Once you have bazel installed, simply run the following command in this examples
-directory to build the code:
-
-    $ bazel build :all
-
-Then you can run the built binary:
-
-    $ bazel-bin/add_person_cpp addressbook.data
-
-To use protobuf in your own bazel project, please follow instructions in the
-[BUILD.bazel](BUILD.bazel) file and [WORKSPACE](WORKSPACE) file.
+* requirements
+  * bazel v0.5.4+
+* steps
+  * [download/install it](https://github.com/bazelbuild/bazel/releases)
+  * `bazel build :all`
+    * build the code
+  * `bazel-bin/add_person_cpp addressbook.data`
+    * run the built binary
+* how to use protobuf | your own bazel project
+  * [BUILD.bazel](BUILD.bazel)
+  * [WORKSPACE](WORKSPACE)
 
 ## Build the example using make
 
-You must install the protobuf package before you can build it using make. The
-minimum requirement is to install protocol compiler (i.e., the protoc binary)
-and the protobuf runtime for the language you want to build.
-
-You can simply run "make" to build the example for all languages (except for
-Go). However, since different languages have different installation requirements,
-it will likely fail. It's better to follow individual instructions below to
-build only the language you are interested in.
+* requirements
+  * install
+    * protocol compiler (i.e., the protoc binary)
+    * protobuf runtime / language you want to build
+* `make`
+  * build the example / ALL languages -- EXCEPT for Go
+  * it will likely fail
+    * Reason: 🧠different languages have different installation requirements 🧠
+* if you want to build ONLY | specific language -> follow individual instructions below
 
 ### C++
 
@@ -76,18 +71,15 @@ list_people_python. They work the same way as the C++ executables.
 
 ### Java
 
-Follow instructions in [../README.md](../README.md) to install protoc and then
-download protobuf Java runtime .jar file from maven:
-
-    https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
-
-Then run the following:
-
-    $ export CLASSPATH=/path/to/protobuf-java-[version].jar
-    $ make java
-
-This will create the add_person_java/list_people_java executables (shell
-scripts) and can be used to create/display an address book data file.
+* [../README.md](../README.md) -- to install -- protoc
+* download protobuf Java runtime .jar
+  * https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
+*    
+    ```
+    export CLASSPATH=/path/to/protobuf-java-[version].jar
+    make java
+    ```
+  * -> will be created add_person_java/list_people_java executables
 
 ### Go
 
